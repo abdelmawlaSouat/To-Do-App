@@ -7,13 +7,14 @@
  * Copyright (c) 2020 Shuriken
  */
 
+import ToDoApp from './ToDoApp'
 import Footer from './Footer'
 
 function App() {
 	return (
 		<div>
 			<h1>TO DO App</h1>
-
+			<ToDoApp />
 			<Footer />
 		</div>
 	)
