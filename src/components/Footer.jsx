@@ -12,7 +12,7 @@ import Sources from './Sources'
 
 function Footer() {
 	return (
-		<Grid>
+		<Grid container>
 			<Grid item>
 				<Sources
 					author="Abdelmawla Souat"
