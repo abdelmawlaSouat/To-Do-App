@@ -1,0 +1,14 @@
+{
+  "short_name": "To Do App",
+  "name": "To Do App - Frontend Challenge",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
