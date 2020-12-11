@@ -7,7 +7,6 @@
  * Copyright (c) 2020 Shuriken
  */
 
-import { createMuiTheme } from '@material-ui/core'
 import JosefinSans from './fonts/JosefinSans-Regular.ttf'
 
 const josefinSans = {
@@ -19,24 +18,29 @@ const josefinSans = {
 	`,
 }
 
-const theme = createMuiTheme({
+const theme = (themeType) => ({
 	palette: {
+		type: themeType,
 		primary: {
 			light: 'hsl(236, 33%, 92%)',
 			main: 'hsl(234, 11%, 52%)',
 			dark: 'hsl(235, 24%, 19%)',
 		},
-		// secondary: {},
 		text: {
-			primary: 'hsl(234, 39%, 85%)',
+			primary: '#fff',
 		},
 	},
 	background: {
-		default: 'hsl(235, 21%, 11%)',
+		// default: 'hsl(235, 21%, 11%)',
+		// paper: 'hsl(235, 24%, 19%)',
 	},
 	typography: {
 		fontFamily: 'JosefinSans Arial',
 		fontSize: 18,
+		h4: {
+			fontFamily: 'Arial Roboto',
+			fontWeight: 600,
+		},
 	},
 	overrides: {
 		MuiCssBaseline: {
