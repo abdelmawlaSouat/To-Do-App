@@ -6,7 +6,8 @@
 	"extends": [
 			"plugin:react/recommended",
 			"airbnb",
-			"prettier"
+			"prettier",
+			"material-ui"
 	],
 	"parserOptions": {
 			"ecmaFeatures": {
@@ -16,7 +17,8 @@
 			"sourceType": "module"
 	},
 	"plugins": [
-			"react"
+			"react",
+			"material-ui"
 	],
 	"rules": {
 			"react/react-in-jsx-scope": "off",
