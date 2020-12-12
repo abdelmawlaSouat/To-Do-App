@@ -10,15 +10,27 @@
 import { Grid } from '@material-ui/core'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Proptypes from 'prop-types'
+
 import ToDoHeader from './ToDoHeader'
 import ToDoCurrentItem from './ToDoCurrentItem'
+import ToDoItemsList from './ToDoItemsList'
+
 import lightThemeIcon from '../images/icon-sun.svg'
 import darkThemeIcon from '../images/icon-moon.svg'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
 	toDoApp: {
 		position: 'relative',
 		top: '-25vh',
+	},
+	currentItem: {
+		borderColor: theme.palette.primary.dark,
+	},
+	itemList: {
+		borderColor:
+			theme.palette.type === 'light'
+				? theme.palette.secondary.light
+				: theme.palette.secondary.dark,
 	},
 }))
 
@@ -46,7 +58,14 @@ function ToDoApp({ handleDarkTheme }) {
 			</Grid>
 
 			<Grid item>
-				<ToDoCurrentItem placeholder="Create a new todo..." />
+				<ToDoCurrentItem
+					classes={classes.currentItem}
+					placeholder="Create a new todo..."
+				/>
+			</Grid>
+
+			<Grid item>
+				<ToDoItemsList classes={classes.itemList} />
 			</Grid>
 		</Grid>
 	)
