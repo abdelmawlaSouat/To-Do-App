@@ -19,7 +19,9 @@ function ToDoHeader({ title, themeIcon, handleDarkTheme }) {
 					justifyContent="space-between"
 					alignItems="center"
 				>
-					<Typography variant="h4">{title}</Typography>
+					<Typography variant="h4" color="secondary">
+						{title}
+					</Typography>
 					<IconButton onClick={() => handleDarkTheme()}>
 						<img src={themeIcon} alt="Theme Icon" />
 					</IconButton>

@@ -23,11 +23,18 @@ const theme = (themeType) => ({
 		type: themeType,
 		primary: {
 			light: 'hsl(236, 33%, 92%)',
+			// main: '#fff',
 			main: 'hsl(234, 11%, 52%)',
 			dark: 'hsl(235, 24%, 19%)',
 		},
+		secondary: {
+			light: 'hsl(236, 33%, 92%)',
+			main: '#fff',
+			// main: 'hsl(234, 11%, 52%)',
+			dark: 'hsl(235, 24%, 19%)',
+		},
 		text: {
-			primary: '#fff',
+			// primary: '#fff',
 		},
 	},
 	background: {
