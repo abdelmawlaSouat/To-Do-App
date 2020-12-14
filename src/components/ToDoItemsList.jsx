@@ -7,21 +7,30 @@
  * Copyright (c) 2020 Shuriken
  */
 
-import { Card, Grid } from '@material-ui/core'
+import { Box, Button, Card, Grid } from '@material-ui/core'
+import ClearIcon from '@material-ui/icons/Clear'
 import Proptypes from 'prop-types'
 import ToDoItem from './ToDoItem'
 
-function ToDoItemsList({ items, classes }) {
+function ToDoItemsList({ deleteItem, items, classes }) {
 	return (
 		<Grid container className="ToDoApp-items-list" justify="center">
 			<Grid item md={5}>
 				<Card>
 					{items.map((item) => (
-						<ToDoItem
+						<Box
+							className={classes}
+							display="flex"
+							alignItems="center"
+							justifyContent="space-between"
+							pr={3}
 							key={item.idx}
-							classes={classes}
-							currentItem={item.value}
-						/>
+						>
+							<ToDoItem classes={classes} currentItem={item.value} />
+							<Button onClick={() => deleteItem(item.idx)}>
+								<ClearIcon />
+							</Button>
+						</Box>
 					))}
 				</Card>
 			</Grid>
@@ -32,6 +41,7 @@ function ToDoItemsList({ items, classes }) {
 ToDoItemsList.propTypes = {
 	classes: Proptypes.string.isRequired,
 	items: Proptypes.instanceOf(Array).isRequired,
+	deleteItem: Proptypes.func.isRequired,
 }
 
 export default ToDoItemsList

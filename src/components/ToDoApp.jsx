@@ -44,11 +44,9 @@ function ToDoApp({ handleDarkTheme }) {
 
 	function handleCurrentItem(currentItem) {
 		setCurrentItem(currentItem)
-		// console.log(currentItem)
 	}
 
 	function addNewItem(newItem) {
-		// console.log(newItem)
 		const newItemsList = [
 			...itemsList,
 			{
@@ -57,11 +55,16 @@ function ToDoApp({ handleDarkTheme }) {
 				checked: false,
 			},
 		]
-		// console.log(newItemsList)
-
-		setItemsList(() => newItemsList)
-		// console.log(itemsList)
+		setItemsList(newItemsList)
 	}
+
+	function deleteItem(itemIdx) {
+		const newItemsList = itemsList.filter(
+			(item) => item.idx !== itemIdx
+		)
+		setItemsList(newItemsList)
+	}
+
 	return (
 		<Grid
 			container
@@ -95,6 +98,7 @@ function ToDoApp({ handleDarkTheme }) {
 				<ToDoItemsList
 					classes={classes.itemsList}
 					items={itemsList}
+					deleteItem={deleteItem}
 				/>
 			</Grid>
 		</Grid>
