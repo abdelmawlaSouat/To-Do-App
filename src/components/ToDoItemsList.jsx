@@ -8,6 +8,7 @@
  */
 
 import { Card, Grid } from '@material-ui/core'
+import Proptypes from 'prop-types'
 import ToDoItem from './ToDoItem'
 
 function ToDoItemsList({ items, classes }) {
@@ -26,6 +27,11 @@ function ToDoItemsList({ items, classes }) {
 			</Grid>
 		</Grid>
 	)
+}
+
+ToDoItemsList.propTypes = {
+	classes: Proptypes.string.isRequired,
+	items: Proptypes.instanceOf(Array).isRequired,
 }
 
 export default ToDoItemsList

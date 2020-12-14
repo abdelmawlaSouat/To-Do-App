@@ -18,13 +18,8 @@ function ToDoItem({
 	classes,
 	placeholder,
 }) {
-	// function onChangeInput(e) {
-	// 	handleCurrentItem(e.target.value)
-	// }
-
 	function onKeyPress(e) {
 		if (e.key === 'Enter') {
-			// console.log('Add to list')
 			addNewItem(currentItem)
 			handleCurrentItem('')
 		}
@@ -50,8 +45,18 @@ function ToDoItem({
 	)
 }
 
+ToDoItem.defaultProps = {
+	placeholder: '',
+	currentItem: '',
+	addNewItem: null,
+	handleCurrentItem: null,
+}
+
 ToDoItem.propTypes = {
-	// placeholder: Proptypes.string.isRequired,
+	placeholder: Proptypes.string,
+	currentItem: Proptypes.string,
+	addNewItem: Proptypes.func,
+	handleCurrentItem: Proptypes.func,
 	classes: Proptypes.string.isRequired,
 }
 

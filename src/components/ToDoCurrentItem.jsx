@@ -35,8 +35,18 @@ function ToDoCurrentItem({
 	)
 }
 
+ToDoCurrentItem.defaultProps = {
+	placeholder: '',
+	currentItem: '',
+	addNewItem: null,
+	handleCurrentItem: null,
+}
+
 ToDoCurrentItem.propTypes = {
-	// placeholder: Proptypes.string.isRequired,
+	placeholder: Proptypes.string,
+	currentItem: Proptypes.string,
+	addNewItem: Proptypes.func,
+	handleCurrentItem: Proptypes.func,
 	classes: Proptypes.string.isRequired,
 }
 
