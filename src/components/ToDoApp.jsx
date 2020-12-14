@@ -7,6 +7,7 @@
  * Copyright (c) 2020 Shuriken
  */
 
+import { useState } from 'react'
 import { Grid } from '@material-ui/core'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Proptypes from 'prop-types'
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 	currentItem: {
 		borderColor: theme.palette.primary.dark,
 	},
-	itemList: {
+	itemsList: {
 		borderColor:
 			theme.palette.type === 'light'
 				? theme.palette.secondary.light
@@ -35,9 +36,32 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function ToDoApp({ handleDarkTheme }) {
+	const [currentItem, setCurrentItem] = useState('')
+	const [itemsList, setItemsList] = useState([])
+
 	const theme = useTheme()
 	const classes = useStyles()
 
+	function handleCurrentItem(currentItem) {
+		setCurrentItem(currentItem)
+		// console.log(currentItem)
+	}
+
+	function addNewItem(newItem) {
+		// console.log(newItem)
+		const newItemsList = [
+			...itemsList,
+			{
+				idx: Date.now(),
+				value: newItem,
+				checked: false,
+			},
+		]
+		// console.log(newItemsList)
+
+		setItemsList(() => newItemsList)
+		// console.log(itemsList)
+	}
 	return (
 		<Grid
 			container
@@ -60,12 +84,18 @@ function ToDoApp({ handleDarkTheme }) {
 			<Grid item>
 				<ToDoCurrentItem
 					classes={classes.currentItem}
+					currentItem={currentItem}
+					handleCurrentItem={handleCurrentItem}
+					addNewItem={addNewItem}
 					placeholder="Create a new todo..."
 				/>
 			</Grid>
 
 			<Grid item>
-				<ToDoItemsList classes={classes.itemList} />
+				<ToDoItemsList
+					classes={classes.itemsList}
+					items={itemsList}
+				/>
 			</Grid>
 		</Grid>
 	)

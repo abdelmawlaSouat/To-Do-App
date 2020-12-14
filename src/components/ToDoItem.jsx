@@ -11,7 +11,25 @@ import { Box, InputBase } from '@material-ui/core'
 import Proptypes from 'prop-types'
 import GradientCheckbox from './ui/GradientCheckbox'
 
-function ToDoItem({ classes, placeholder }) {
+function ToDoItem({
+	currentItem,
+	handleCurrentItem,
+	addNewItem,
+	classes,
+	placeholder,
+}) {
+	// function onChangeInput(e) {
+	// 	handleCurrentItem(e.target.value)
+	// }
+
+	function onKeyPress(e) {
+		if (e.key === 'Enter') {
+			// console.log('Add to list')
+			addNewItem(currentItem)
+			handleCurrentItem('')
+		}
+	}
+
 	return (
 		<Box
 			className={classes}
@@ -22,13 +40,18 @@ function ToDoItem({ classes, placeholder }) {
 			borderBottom={1}
 		>
 			<GradientCheckbox />
-			<InputBase placeholder={placeholder} />
+			<InputBase
+				placeholder={placeholder}
+				onChange={(e) => handleCurrentItem(e.target.value)}
+				onKeyPress={onKeyPress}
+				value={currentItem}
+			/>
 		</Box>
 	)
 }
 
 ToDoItem.propTypes = {
-	placeholder: Proptypes.string.isRequired,
+	// placeholder: Proptypes.string.isRequired,
 	classes: Proptypes.string.isRequired,
 }
 

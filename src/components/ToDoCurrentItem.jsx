@@ -11,12 +11,24 @@ import { Card, Grid } from '@material-ui/core'
 import Proptypes from 'prop-types'
 import ToDoItem from './ToDoItem'
 
-function ToDoCurrentItem({ classes, placeholder }) {
+function ToDoCurrentItem({
+	currentItem,
+	handleCurrentItem,
+	addNewItem,
+	classes,
+	placeholder,
+}) {
 	return (
 		<Grid className="ToDoApp-current-item" container justify="center">
 			<Grid item md={5}>
 				<Card>
-					<ToDoItem classes={classes} placeholder={placeholder} />
+					<ToDoItem
+						currentItem={currentItem}
+						handleCurrentItem={handleCurrentItem}
+						addNewItem={addNewItem}
+						classes={classes}
+						placeholder={placeholder}
+					/>
 				</Card>
 			</Grid>
 		</Grid>
@@ -24,7 +36,7 @@ function ToDoCurrentItem({ classes, placeholder }) {
 }
 
 ToDoCurrentItem.propTypes = {
-	placeholder: Proptypes.string.isRequired,
+	// placeholder: Proptypes.string.isRequired,
 	classes: Proptypes.string.isRequired,
 }
 
