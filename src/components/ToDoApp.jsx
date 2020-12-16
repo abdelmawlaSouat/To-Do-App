@@ -27,12 +27,12 @@ const useStyles = makeStyles((theme) => ({
 	currentItem: {
 		borderColor: theme.palette.primary.dark,
 	},
-	itemsList: {
-		borderColor:
-			theme.palette.type === 'light'
-				? theme.palette.secondary.light
-				: theme.palette.secondary.dark,
-	},
+	// itemsList: {
+	// 	borderColor:
+	// 		theme.palette.type === 'light'
+	// 			? theme.palette.secondary.light
+	// 			: theme.palette.secondary.dark,
+	// },
 }))
 
 function ToDoApp({ handleDarkTheme }) {
@@ -62,6 +62,14 @@ function ToDoApp({ handleDarkTheme }) {
 		const newItemsList = itemsList.filter(
 			(item) => item.idx !== itemIdx
 		)
+		setItemsList(newItemsList)
+	}
+
+	function updateItem(item) {
+		const newItemsList = itemsList.map((element) =>
+			element.idx === item.idx ? item : element
+		)
+		// console.log(newItemsList)
 		setItemsList(newItemsList)
 	}
 
@@ -96,8 +104,9 @@ function ToDoApp({ handleDarkTheme }) {
 
 			<Grid item>
 				<ToDoItemsList
-					classes={classes.itemsList}
+					// classes={classes.itemsList}
 					items={itemsList}
+					updateItem={updateItem}
 					deleteItem={deleteItem}
 				/>
 			</Grid>

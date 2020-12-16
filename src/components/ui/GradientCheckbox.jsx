@@ -8,6 +8,7 @@
  */
 
 import { Checkbox, makeStyles } from '@material-ui/core'
+import Proptypes from 'prop-types'
 import CircleUnchecked from '@material-ui/icons/RadioButtonUnchecked'
 import CheckCircleGradient from './icons/CheckCircleGradient'
 
@@ -22,7 +23,12 @@ const useStyles = makeStyles({
 	},
 })
 
-function GradientCheckbox() {
+function GradientCheckbox({
+	idx,
+	isChecked,
+	currentItem,
+	updateItem,
+}) {
 	const classes = useStyles()
 
 	const CheckCircle = (
@@ -32,6 +38,17 @@ function GradientCheckbox() {
 			stops={gradientColors}
 		/>
 	)
+
+	function onChangeCheckbox() {
+		const item = {
+			idx,
+			value: currentItem,
+			checked: !isChecked,
+		}
+
+		item.checked = !isChecked
+		updateItem(item)
+	}
 
 	const unCheckedCircle = (
 		<CircleUnchecked
@@ -45,8 +62,21 @@ function GradientCheckbox() {
 			className={classes.root}
 			icon={unCheckedCircle}
 			checkedIcon={CheckCircle}
+			checked={isChecked}
+			onChange={() => onChangeCheckbox()}
 		/>
 	)
+}
+
+GradientCheckbox.defaultProps = {
+	updateItem: null,
+}
+
+GradientCheckbox.propTypes = {
+	idx: Proptypes.number.isRequired,
+	currentItem: Proptypes.string.isRequired,
+	isChecked: Proptypes.bool.isRequired,
+	updateItem: Proptypes.func,
 }
 
 export default GradientCheckbox
