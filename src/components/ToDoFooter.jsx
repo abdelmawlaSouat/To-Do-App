@@ -8,6 +8,7 @@
  */
 
 import { Box, Typography, Button } from '@material-ui/core'
+import Proptypes from 'prop-types'
 
 function ToDoFooter({ itemsCount, filterList, clearList }) {
 	return (
@@ -35,6 +36,12 @@ function ToDoFooter({ itemsCount, filterList, clearList }) {
 			<Button onClick={() => clearList()}>Clear Completed</Button>
 		</Box>
 	)
+}
+
+ToDoFooter.propTypes = {
+	itemsCount: Proptypes.number.isRequired,
+	filterList: Proptypes.func.isRequired,
+	clearList: Proptypes.func.isRequired,
 }
 
 export default ToDoFooter

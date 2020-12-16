@@ -77,6 +77,8 @@ ToDoItemsList.propTypes = {
 	items: Proptypes.instanceOf(Array).isRequired,
 	deleteItem: Proptypes.func.isRequired,
 	updateItem: Proptypes.func.isRequired,
+	filterList: Proptypes.func.isRequired,
+	clearList: Proptypes.func.isRequired,
 }
 
 export default ToDoItemsList
