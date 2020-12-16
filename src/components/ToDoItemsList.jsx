@@ -11,10 +11,13 @@ import { Box, Button, Card, Grid } from '@material-ui/core'
 import ClearIcon from '@material-ui/icons/Clear'
 import Proptypes from 'prop-types'
 import ToDoItem from './ToDoItem'
+import ToDoFooter from './ToDoFooter'
 
 function ToDoItemsList({
 	deleteItem,
 	updateItem,
+	filterList,
+	clearList,
 	items,
 	// classes
 }) {
@@ -54,6 +57,11 @@ function ToDoItemsList({
 							</Button>
 						</Box>
 					))}
+					<ToDoFooter
+						itemsCount={items.length}
+						filterList={filterList}
+						clearList={clearList}
+					/>
 				</Card>
 			</Grid>
 		</Grid>

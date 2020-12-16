@@ -39,6 +39,9 @@ function ToDoApp({ handleDarkTheme }) {
 	const [currentItem, setCurrentItem] = useState('')
 	const [allItemsAreChecked, setallItemsAreChecked] = useState(false)
 	const [itemsList, setItemsList] = useState([])
+	const [filteredItemsList, setfilteredItemsList] = useState(
+		itemsList
+	)
 
 	const theme = useTheme()
 	const classes = useStyles()
@@ -57,6 +60,7 @@ function ToDoApp({ handleDarkTheme }) {
 			},
 		]
 		setItemsList(newItemsList)
+		setfilteredItemsList(newItemsList)
 	}
 
 	function deleteItem(itemIdx) {
@@ -64,6 +68,7 @@ function ToDoApp({ handleDarkTheme }) {
 			(item) => item.idx !== itemIdx
 		)
 		setItemsList(newItemsList)
+		setfilteredItemsList(newItemsList)
 	}
 
 	function handleCheckAllItems() {
@@ -74,6 +79,7 @@ function ToDoApp({ handleDarkTheme }) {
 		})
 		setallItemsAreChecked(!allItemsAreChecked)
 		setItemsList(newItemList)
+		setfilteredItemsList(newItemList)
 	}
 
 	function updateItem(item) {
@@ -81,6 +87,27 @@ function ToDoApp({ handleDarkTheme }) {
 			element.idx === item.idx ? item : element
 		)
 		setItemsList(newItemsList)
+		setfilteredItemsList(newItemsList)
+	}
+
+	function filterList(type) {
+		let newItemsList = []
+
+		if (type === 'active' || type === 'completed') {
+			const filter = type !== 'active'
+			newItemsList = itemsList.filter(
+				(item) => item.checked === filter
+			)
+		} else {
+			newItemsList = itemsList
+		}
+		setfilteredItemsList(newItemsList)
+	}
+
+	function clearList() {
+		const newItemsList = itemsList.filter((item) => !item.checked)
+		setItemsList(newItemsList)
+		setfilteredItemsList(newItemsList)
 	}
 
 	return (
@@ -117,9 +144,11 @@ function ToDoApp({ handleDarkTheme }) {
 			<Grid item>
 				<ToDoItemsList
 					// classes={classes.itemsList}
-					items={itemsList}
+					items={filteredItemsList}
 					updateItem={updateItem}
 					deleteItem={deleteItem}
+					filterList={filterList}
+					clearList={clearList}
 				/>
 			</Grid>
 		</Grid>
