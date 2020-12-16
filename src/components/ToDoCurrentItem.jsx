@@ -14,6 +14,8 @@ import ToDoItem from './ToDoItem'
 function ToDoCurrentItem({
 	currentItem,
 	handleCurrentItem,
+	handleCheckAllItems,
+	allItemsAreChecked,
 	addNewItem,
 	classes,
 	placeholder,
@@ -25,6 +27,8 @@ function ToDoCurrentItem({
 					<ToDoItem
 						currentItem={currentItem}
 						handleCurrentItem={handleCurrentItem}
+						isChecked={allItemsAreChecked}
+						handleCheckAllItems={handleCheckAllItems}
 						addNewItem={addNewItem}
 						classes={classes}
 						placeholder={placeholder}
@@ -40,6 +44,8 @@ ToDoCurrentItem.defaultProps = {
 	currentItem: '',
 	addNewItem: null,
 	handleCurrentItem: null,
+	handleCheckAllItems: null,
+	allItemsAreChecked: false,
 }
 
 ToDoCurrentItem.propTypes = {
@@ -48,6 +54,8 @@ ToDoCurrentItem.propTypes = {
 	addNewItem: Proptypes.func,
 	handleCurrentItem: Proptypes.func,
 	classes: Proptypes.string.isRequired,
+	handleCheckAllItems: Proptypes.func,
+	allItemsAreChecked: Proptypes.bool,
 }
 
 export default ToDoCurrentItem

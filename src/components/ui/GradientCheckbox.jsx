@@ -27,6 +27,7 @@ function GradientCheckbox({
 	idx,
 	isChecked,
 	currentItem,
+	checkAllItems,
 	updateItem,
 }) {
 	const classes = useStyles()
@@ -40,14 +41,18 @@ function GradientCheckbox({
 	)
 
 	function onChangeCheckbox() {
-		const item = {
-			idx,
-			value: currentItem,
-			checked: !isChecked,
-		}
+		if (updateItem) {
+			const item = {
+				idx,
+				value: currentItem,
+				checked: !isChecked,
+			}
 
-		item.checked = !isChecked
-		updateItem(item)
+			item.checked = !isChecked
+			updateItem(item)
+		} else if (checkAllItems !== null) {
+			checkAllItems()
+		}
 	}
 
 	const unCheckedCircle = (
@@ -70,6 +75,7 @@ function GradientCheckbox({
 
 GradientCheckbox.defaultProps = {
 	updateItem: null,
+	checkAllItems: null,
 }
 
 GradientCheckbox.propTypes = {
@@ -77,6 +83,7 @@ GradientCheckbox.propTypes = {
 	currentItem: Proptypes.string.isRequired,
 	isChecked: Proptypes.bool.isRequired,
 	updateItem: Proptypes.func,
+	checkAllItems: Proptypes.func,
 }
 
 export default GradientCheckbox

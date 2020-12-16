@@ -16,6 +16,7 @@ function ToDoItem({
 	currentItem,
 	isChecked,
 	handleCurrentItem,
+	handleCheckAllItems,
 	addNewItem,
 	updateItem,
 	idx,
@@ -24,7 +25,10 @@ function ToDoItem({
 }) {
 	const useStyles = makeStyles(() => ({
 		input: {
-			textDecorationLine: isChecked ? 'line-through' : 'none',
+			textDecorationLine:
+				handleCheckAllItems == null && isChecked
+					? 'line-through'
+					: 'none',
 		},
 	}))
 
@@ -63,6 +67,7 @@ function ToDoItem({
 		>
 			<GradientCheckbox
 				updateItem={updateItem}
+				checkAllItems={handleCheckAllItems}
 				idx={idx}
 				currentItem={currentItem}
 				isChecked={isChecked}
@@ -73,7 +78,6 @@ function ToDoItem({
 				onKeyPress={onKeyPress}
 				value={currentItem}
 				className={clxs.input}
-				// ref={input}
 			/>
 		</Box>
 	)
@@ -86,6 +90,7 @@ ToDoItem.defaultProps = {
 	addNewItem: null,
 	updateItem: null,
 	handleCurrentItem: null,
+	handleCheckAllItems: null,
 	isChecked: false,
 }
 
@@ -97,6 +102,7 @@ ToDoItem.propTypes = {
 	addNewItem: Proptypes.func,
 	updateItem: Proptypes.func,
 	handleCurrentItem: Proptypes.func,
+	handleCheckAllItems: Proptypes.func,
 	// classes: Proptypes.string.isRequired,
 }
 

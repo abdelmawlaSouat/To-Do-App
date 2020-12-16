@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
 
 function ToDoApp({ handleDarkTheme }) {
 	const [currentItem, setCurrentItem] = useState('')
+	const [allItemsAreChecked, setallItemsAreChecked] = useState(false)
 	const [itemsList, setItemsList] = useState([])
 
 	const theme = useTheme()
@@ -65,11 +66,20 @@ function ToDoApp({ handleDarkTheme }) {
 		setItemsList(newItemsList)
 	}
 
+	function handleCheckAllItems() {
+		const newItemList = itemsList.map((element) => {
+			const item = element
+			item.checked = !allItemsAreChecked
+			return item
+		})
+		setallItemsAreChecked(!allItemsAreChecked)
+		setItemsList(newItemList)
+	}
+
 	function updateItem(item) {
 		const newItemsList = itemsList.map((element) =>
 			element.idx === item.idx ? item : element
 		)
-		// console.log(newItemsList)
 		setItemsList(newItemsList)
 	}
 
@@ -97,6 +107,8 @@ function ToDoApp({ handleDarkTheme }) {
 					classes={classes.currentItem}
 					currentItem={currentItem}
 					handleCurrentItem={handleCurrentItem}
+					allItemsAreChecked={allItemsAreChecked}
+					handleCheckAllItems={handleCheckAllItems}
 					addNewItem={addNewItem}
 					placeholder="Create a new todo..."
 				/>
