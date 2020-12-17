@@ -19,7 +19,7 @@ const gradientColors = [
 
 const useStyles = makeStyles({
 	circleUnchecked: {
-		color: 'hsl(220, 98%, 61%)',
+		color: 'hsl(236, 9%, 61%)',
 	},
 })
 

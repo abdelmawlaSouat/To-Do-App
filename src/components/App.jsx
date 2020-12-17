@@ -16,39 +16,43 @@ import {
 	createMuiTheme,
 } from '@material-ui/core'
 import { ThemeProvider } from '@material-ui/core/styles'
+import clsx from 'clsx'
 import ToDoApp from './ToDoApp'
 import Footer from './Footer'
 import getTheme from '../theme'
 
-const useStyle = makeStyles({
-	bgColor: {
-		height: '30vh',
-		opacity: '0.9',
-		background: `linear-gradient(90deg, rgba(58,123,253,1) 0%,
-			rgba(87,221,255,1) 90%)`,
-	},
-})
 function App() {
 	const [darkTheme, setDarkTheme] = useState(false)
-
 	const themeType = getTheme(darkTheme ? 'dark' : 'light')
 	const theme = createMuiTheme(themeType)
-	const classes = useStyle()
 
-	function handleDarkTheme() {
-		setDarkTheme(!darkTheme)
-	}
+	const useStyle = makeStyles({
+		backgroundBox: {
+			height: '30vh',
+			opacity: '0.9',
+			background: `linear-gradient(90deg, rgba(58,123,253,1) 0%,
+				rgba(87,221,255,1) 90%)`,
+		},
+		bgRoot: {
+			backgroundColor: darkTheme
+				? 'hsl(235, 21%, 11%)'
+				: 'hsl(0, 0%, 98%)',
+		},
+	})
+	const classes = useStyle()
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Paper style={{ height: '100vh' }}>
-				<Grid container className="App">
+			<Paper className={clsx('App', classes.bgRoot)}>
+				<Grid container>
 					<Grid item xs={12}>
-						<Box className={classes.bgColor} />
+						<Box className={classes.backgroundBox} />
 					</Grid>
 
 					<Grid item xs={12}>
-						<ToDoApp handleDarkTheme={handleDarkTheme} />
+						<ToDoApp
+							handleDarkTheme={() => setDarkTheme(!darkTheme)}
+						/>
 					</Grid>
 
 					<Grid item xs={12}>

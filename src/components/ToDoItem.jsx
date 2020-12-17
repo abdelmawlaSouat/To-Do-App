@@ -25,22 +25,27 @@ function ToDoItem({
 }) {
 	const useStyles = makeStyles(() => ({
 		input: {
+			width: '100%',
 			textDecorationLine:
-				handleCheckAllItems == null && isChecked
-					? 'line-through'
-					: 'none',
+				!handleCheckAllItems && isChecked ? 'line-through' : 'none',
+			color:
+				!handleCheckAllItems && isChecked ? 'hsl(236, 9%, 61%)' : '',
+		},
+		itemBox: {
+			borderBottom: '1px solid red',
 		},
 	}))
 
-	const clxs = useStyles()
+	const classes = useStyles()
 
 	function onKeyPress(e) {
 		if (e.key === 'Enter') {
 			if (handleCurrentItem !== null) {
 				addNewItem(currentItem)
 				handleCurrentItem('')
+			} else {
+				e.target.blur()
 			}
-			e.target.blur()
 		}
 	}
 	function onChangeInput(e) {
@@ -58,12 +63,13 @@ function ToDoItem({
 
 	return (
 		<Box
-			// className={classes}
+			// className={classes.itemBox}
 			display="flex"
 			alignItems="center"
 			px={1}
 			py={2}
-			borderBottom={1}
+			width="100%"
+			// borderBottom={1}
 		>
 			<GradientCheckbox
 				updateItem={updateItem}
@@ -77,7 +83,7 @@ function ToDoItem({
 				onChange={(e) => onChangeInput(e)}
 				onKeyPress={onKeyPress}
 				value={currentItem}
-				className={clxs.input}
+				className={classes.input}
 			/>
 		</Box>
 	)

@@ -8,10 +8,23 @@
  */
 
 import { Box, Button, Card, Grid } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 import ClearIcon from '@material-ui/icons/Clear'
 import Proptypes from 'prop-types'
 import ToDoItem from './ToDoItem'
 import ToDoFooter from './ToDoFooter'
+
+const useStyles = makeStyles(() => ({
+	itemBox: {
+		borderBottom: '1px solid hsl(236, 9%, 61%)',
+	},
+	button: {
+		color: 'hsl(236, 9%, 61%)',
+		'&:hover': {
+			backgroundColor: 'transparent',
+		},
+	},
+}))
 
 function ToDoItemsList({
 	deleteItem,
@@ -19,42 +32,46 @@ function ToDoItemsList({
 	filterList,
 	clearList,
 	items,
-	// classes
+	classes,
 }) {
-	// function handleItem(itemValue) {
-	// 	const item = {
-	// 		idx,
-	// 		value: itemValue,
-	// 		checked: !isChecked,
-	// 	}
-
-	// 	item.checked = !isChecked
-	// 	updateItem(item)
-	// }
+	const clxs = useStyles()
 
 	return (
 		<Grid container className="ToDoApp-items-list" justify="center">
 			<Grid item md={5}>
-				<Card>
+				<Card className={classes}>
 					{items.map((item) => (
 						<Box
-							// className={classes}
 							display="flex"
+							className={clxs.itemBox}
 							alignItems="center"
 							justifyContent="space-between"
+							my={2}
 							pr={3}
 							key={item.idx}
+							onMouseEnter={() => {
+								const { idx, value, checked } = item
+								updateItem({ idx, value, checked, showCross: true })
+							}}
+							onMouseLeave={() => {
+								const { idx, value, checked } = item
+								updateItem({ idx, value, checked, showCross: false })
+							}}
 						>
 							<ToDoItem
 								currentItem={item.value}
 								isChecked={item.checked}
-								// handleCurrentItem={handleCurrentItem}
 								idx={item.idx}
 								updateItem={updateItem}
 							/>
-							<Button onClick={() => deleteItem(item.idx)}>
-								<ClearIcon />
-							</Button>
+							{item.showCross && (
+								<Button
+									className={clxs.button}
+									onClick={() => deleteItem(item.idx)}
+								>
+									<ClearIcon />
+								</Button>
+							)}
 						</Box>
 					))}
 					<ToDoFooter
@@ -68,17 +85,17 @@ function ToDoItemsList({
 	)
 }
 
-// ToDoItemsList.defaultProps = {
-// 	classes: '',
-// }
+ToDoItemsList.defaultProps = {
+	classes: '',
+}
 
 ToDoItemsList.propTypes = {
-	// classes: Proptypes.string,
 	items: Proptypes.instanceOf(Array).isRequired,
 	deleteItem: Proptypes.func.isRequired,
 	updateItem: Proptypes.func.isRequired,
 	filterList: Proptypes.func.isRequired,
 	clearList: Proptypes.func.isRequired,
+	classes: Proptypes.string,
 }
 
 export default ToDoItemsList

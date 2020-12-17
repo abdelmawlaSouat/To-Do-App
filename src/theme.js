@@ -22,21 +22,21 @@ const theme = (themeType) => ({
 	palette: {
 		type: themeType,
 		primary: {
-			light: 'hsl(236, 33%, 92%)',
+			light: 'hsl(233, 11%, 84%)',
 			main: 'hsl(234, 11%, 52%)',
-			dark: 'hsl(235, 24%, 19%)',
+			dark: 'hsl(234, 39%, 85%)',
 		},
-		secondary: {
-			light: 'hsl(236, 33%, 92%)',
-			main: '#fff',
-			dark: 'hsl(233, 11%, 84%)',
-		},
+		// secondary: {
+		// 	light: ,
+		// 	main: ,
+		// 	dark: ,
+		// },
 	},
 	typography: {
-		fontFamily: 'JosefinSans Arial',
+		fontFamily: 'JosefinSans Arial sans-serif',
 		fontSize: 18,
 		h4: {
-			fontFamily: 'Arial Roboto',
+			fontFamily: 'sans-serif Arial Roboto',
 			fontWeight: 600,
 		},
 	},

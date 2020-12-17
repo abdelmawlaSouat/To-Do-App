@@ -13,13 +13,13 @@ import Proptypes from 'prop-types'
 function Sources({ author, authorProfileLink, challengeLink }) {
 	return (
 		<Box className="Sources" display="flex" alignItems="center">
-			<Typography>Challenge by </Typography>
+			<Typography variant="caption">{`Challenge by `}</Typography>
 			<Box ml={1}>
 				<Link href={challengeLink} target="_blank" rel="noreferrer">
 					Frontend Mentor
 				</Link>
 			</Box>
-			<Typography>. Coded by </Typography>
+			<Typography variant="caption">{`. Coded by `}</Typography>
 			<Box ml={1}>
 				<Link
 					href={authorProfileLink}

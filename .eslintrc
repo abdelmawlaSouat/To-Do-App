@@ -24,6 +24,7 @@
 			"react/jsx-indent": "off",
 			"react/jsx-indent-props": "off",
 			"react/prop-types": "warn",
+			"react/jsx-curly-newline": "off",
 			"no-shadow": "off"
 	}
 }

@@ -11,6 +11,8 @@ import { Box, Grid, IconButton, Typography } from '@material-ui/core'
 import Proptypes from 'prop-types'
 
 function ToDoHeader({ title, themeIcon, handleDarkTheme }) {
+	const titleStyle = { color: 'white' }
+
 	return (
 		<Grid container justify="center" className="ToDoApp-header">
 			<Grid item md={5}>
@@ -19,7 +21,7 @@ function ToDoHeader({ title, themeIcon, handleDarkTheme }) {
 					justifyContent="space-between"
 					alignItems="center"
 				>
-					<Typography variant="h4" color="secondary">
+					<Typography variant="h4" style={titleStyle}>
 						{title}
 					</Typography>
 					<IconButton onClick={() => handleDarkTheme()}>

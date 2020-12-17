@@ -16,17 +16,24 @@ import ToDoHeader from './ToDoHeader'
 import ToDoCurrentItem from './ToDoCurrentItem'
 import ToDoItemsList from './ToDoItemsList'
 
-import lightThemeIcon from '../images/icon-sun.svg'
-import darkThemeIcon from '../images/icon-moon.svg'
+import darkThemeIcon from '../images/icon-sun.svg'
+import lightThemeIcon from '../images/icon-moon.svg'
 
 const useStyles = makeStyles((theme) => ({
 	toDoApp: {
 		position: 'relative',
 		top: '-25vh',
+		minHeight: '70vh',
 	},
-	currentItem: {
-		borderColor: theme.palette.primary.dark,
+	item: {
+		backgroundColor:
+			theme.palette.type === 'light'
+				? 'hsl(0, 0%, 98%)'
+				: 'hsl(235, 24%, 19%)',
 	},
+	// currentItem: {
+	// 	borderColor: theme.palette.primary.dark,
+	// },
 	// itemsList: {
 	// 	borderColor:
 	// 		theme.palette.type === 'light'
@@ -57,6 +64,7 @@ function ToDoApp({ handleDarkTheme }) {
 				idx: Date.now(),
 				value: newItem,
 				checked: false,
+				showCross: false,
 			},
 		]
 		setItemsList(newItemsList)
@@ -86,8 +94,8 @@ function ToDoApp({ handleDarkTheme }) {
 		const newItemsList = itemsList.map((element) =>
 			element.idx === item.idx ? item : element
 		)
-		setItemsList(newItemsList)
-		setfilteredItemsList(newItemsList)
+		setItemsList(() => newItemsList)
+		setfilteredItemsList(() => newItemsList)
 	}
 
 	function filterList(type) {
@@ -131,7 +139,7 @@ function ToDoApp({ handleDarkTheme }) {
 
 			<Grid item>
 				<ToDoCurrentItem
-					classes={classes.currentItem}
+					classes={classes.item}
 					currentItem={currentItem}
 					handleCurrentItem={handleCurrentItem}
 					allItemsAreChecked={allItemsAreChecked}
@@ -143,7 +151,7 @@ function ToDoApp({ handleDarkTheme }) {
 
 			<Grid item>
 				<ToDoItemsList
-					// classes={classes.itemsList}
+					classes={classes.item}
 					items={filteredItemsList}
 					updateItem={updateItem}
 					deleteItem={deleteItem}

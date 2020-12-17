@@ -23,14 +23,13 @@ function ToDoCurrentItem({
 	return (
 		<Grid className="ToDoApp-current-item" container justify="center">
 			<Grid item md={5}>
-				<Card>
+				<Card className={classes}>
 					<ToDoItem
 						currentItem={currentItem}
 						handleCurrentItem={handleCurrentItem}
 						isChecked={allItemsAreChecked}
 						handleCheckAllItems={handleCheckAllItems}
 						addNewItem={addNewItem}
-						classes={classes}
 						placeholder={placeholder}
 					/>
 				</Card>
@@ -46,6 +45,7 @@ ToDoCurrentItem.defaultProps = {
 	handleCurrentItem: null,
 	handleCheckAllItems: null,
 	allItemsAreChecked: false,
+	classes: '',
 }
 
 ToDoCurrentItem.propTypes = {
@@ -53,7 +53,7 @@ ToDoCurrentItem.propTypes = {
 	currentItem: Proptypes.string,
 	addNewItem: Proptypes.func,
 	handleCurrentItem: Proptypes.func,
-	classes: Proptypes.string.isRequired,
+	classes: Proptypes.string,
 	handleCheckAllItems: Proptypes.func,
 	allItemsAreChecked: Proptypes.bool,
 }
