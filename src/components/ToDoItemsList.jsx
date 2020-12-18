@@ -7,7 +7,7 @@
  * Copyright (c) 2020 Shuriken
  */
 
-import { Box, Button, Card, Grid } from '@material-ui/core'
+import { Box, Button, Card, Grid, Grow } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import ClearIcon from '@material-ui/icons/Clear'
 import Proptypes from 'prop-types'
@@ -43,38 +43,44 @@ function ToDoItemsList({
 			<Grid item md={5}>
 				<Card className={classes}>
 					{items.map((item) => (
-						<Box
-							display="flex"
-							className={clxs.itemBox}
-							alignItems="center"
-							justifyContent="space-between"
-							my={2}
-							pr={3}
-							key={item.idx}
-							onMouseEnter={() => {
-								const { idx, value, checked } = item
-								updateItem({ idx, value, checked, showCross: true })
-							}}
-							onMouseLeave={() => {
-								const { idx, value, checked } = item
-								updateItem({ idx, value, checked, showCross: false })
-							}}
-						>
-							<ToDoItem
-								currentItem={item.value}
-								isChecked={item.checked}
-								idx={item.idx}
-								updateItem={updateItem}
-							/>
-							{item.showCross && (
-								<Button
-									className={clxs.button}
-									onClick={() => deleteItem(item.idx)}
-								>
-									<ClearIcon />
-								</Button>
-							)}
-						</Box>
+						<Grow key={item.idx} in={item.id !== -1}>
+							<Box
+								display="flex"
+								className={clxs.itemBox}
+								alignItems="center"
+								justifyContent="space-between"
+								my={2}
+								pr={3}
+								onMouseEnter={() => {
+									const { idx, value, checked } = item
+									updateItem({ idx, value, checked, showCross: true })
+								}}
+								onMouseLeave={() => {
+									const { idx, value, checked } = item
+									updateItem({
+										idx,
+										value,
+										checked,
+										showCross: false,
+									})
+								}}
+							>
+								<ToDoItem
+									currentItem={item.value}
+									isChecked={item.checked}
+									idx={item.idx}
+									updateItem={updateItem}
+								/>
+								{item.showCross && (
+									<Button
+										className={clxs.button}
+										onClick={() => deleteItem(item.idx)}
+									>
+										<ClearIcon />
+									</Button>
+								)}
+							</Box>
+						</Grow>
 					))}
 					<ToDoFooter
 						itemsCount={items.length}

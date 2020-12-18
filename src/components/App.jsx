@@ -12,6 +12,7 @@ import {
 	Grid,
 	Paper,
 	Box,
+	Grow,
 	makeStyles,
 	createMuiTheme,
 } from '@material-ui/core'
@@ -22,7 +23,7 @@ import Footer from './Footer'
 import getTheme from '../theme'
 
 function App() {
-	const [darkTheme, setDarkTheme] = useState(false)
+	const [darkTheme, setDarkTheme] = useState(true)
 	const themeType = getTheme(darkTheme ? 'dark' : 'light')
 	const theme = createMuiTheme(themeType)
 
@@ -43,23 +44,25 @@ function App() {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Paper className={clsx('App', classes.bgRoot)}>
-				<Grid container>
-					<Grid item xs={12}>
-						<Box className={classes.backgroundBox} />
-					</Grid>
+			<Grow in={darkTheme || !darkTheme}>
+				<Paper className={clsx('App', classes.bgRoot)}>
+					<Grid container>
+						<Grid item xs={12}>
+							<Box className={classes.backgroundBox} />
+						</Grid>
 
-					<Grid item xs={12}>
-						<ToDoApp
-							handleDarkTheme={() => setDarkTheme(!darkTheme)}
-						/>
-					</Grid>
+						<Grid item xs={12}>
+							<ToDoApp
+								handleDarkTheme={() => setDarkTheme(!darkTheme)}
+							/>
+						</Grid>
 
-					<Grid item xs={12}>
-						<Footer />
+						<Grid item xs={12}>
+							<Footer />
+						</Grid>
 					</Grid>
-				</Grid>
-			</Paper>
+				</Paper>
+			</Grow>
 		</ThemeProvider>
 	)
 }
