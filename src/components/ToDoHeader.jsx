@@ -20,6 +20,7 @@ function ToDoHeader({ title, themeIcon, handleDarkTheme }) {
 					display="flex"
 					justifyContent="space-between"
 					alignItems="center"
+					mb={3}
 				>
 					<Typography variant="h4" style={titleStyle}>
 						{title}

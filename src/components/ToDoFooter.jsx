@@ -30,19 +30,32 @@ const useStyles = makeStyles((theme) => ({
 	fontWeight700: {
 		fontWeight: '700',
 	},
+	activeFilter: {
+		color: '#4682B4',
+	},
 }))
 
-function ToDoFooter({ itemsCount, filterList, clearList }) {
+function ToDoFooter({
+	itemsCount,
+	filter,
+	handleFilter,
+	filterList,
+	clearList,
+}) {
 	const classes = useStyles()
+
+	function onClickFilter(type) {
+		filterList(type)
+		handleFilter(type)
+	}
 
 	return (
 		<Box
 			display="flex"
 			alignItems="center"
 			justifyContent="space-between"
-			px={1}
+			px={3}
 			py={2}
-			// borderBottom={0}
 		>
 			<Typography
 				variant="caption"
@@ -57,9 +70,10 @@ function ToDoFooter({ itemsCount, filterList, clearList }) {
 					className={clsx(
 						classes.button,
 						classes.fontWeight700,
-						classes.footerText
+						classes.footerText,
+						filter === 'all' ? classes.activeFilter : ''
 					)}
-					onClick={() => filterList('all')}
+					onClick={() => onClickFilter('all')}
 				>
 					All
 				</Button>
@@ -67,9 +81,10 @@ function ToDoFooter({ itemsCount, filterList, clearList }) {
 					className={clsx(
 						classes.button,
 						classes.fontWeight700,
-						classes.footerText
+						classes.footerText,
+						filter === 'active' ? classes.activeFilter : ''
 					)}
-					onClick={() => filterList('active')}
+					onClick={() => onClickFilter('active')}
 				>
 					Active
 				</Button>
@@ -77,9 +92,10 @@ function ToDoFooter({ itemsCount, filterList, clearList }) {
 					className={clsx(
 						classes.button,
 						classes.fontWeight700,
-						classes.footerText
+						classes.footerText,
+						filter === 'completed' ? classes.activeFilter : ''
 					)}
-					onClick={() => filterList('completed')}
+					onClick={() => onClickFilter('completed')}
 				>
 					Completed
 				</Button>
@@ -97,6 +113,8 @@ function ToDoFooter({ itemsCount, filterList, clearList }) {
 
 ToDoFooter.propTypes = {
 	itemsCount: Proptypes.number.isRequired,
+	filter: Proptypes.string.isRequired,
+	handleFilter: Proptypes.func.isRequired,
 	filterList: Proptypes.func.isRequired,
 	clearList: Proptypes.func.isRequired,
 }

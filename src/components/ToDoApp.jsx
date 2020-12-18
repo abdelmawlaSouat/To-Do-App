@@ -31,21 +31,13 @@ const useStyles = makeStyles((theme) => ({
 				? 'hsl(0, 0%, 98%)'
 				: 'hsl(235, 24%, 19%)',
 	},
-	// currentItem: {
-	// 	borderColor: theme.palette.primary.dark,
-	// },
-	// itemsList: {
-	// 	borderColor:
-	// 		theme.palette.type === 'light'
-	// 			? theme.palette.secondary.light
-	// 			: theme.palette.secondary.dark,
-	// },
 }))
 
 function ToDoApp({ handleDarkTheme }) {
 	const [currentItem, setCurrentItem] = useState('')
 	const [allItemsAreChecked, setallItemsAreChecked] = useState(false)
 	const [itemsList, setItemsList] = useState([])
+	const [filter, setFilter] = useState('all')
 	const [filteredItemsList, setfilteredItemsList] = useState(
 		itemsList
 	)
@@ -55,6 +47,10 @@ function ToDoApp({ handleDarkTheme }) {
 
 	function handleCurrentItem(currentItem) {
 		setCurrentItem(currentItem)
+	}
+
+	function handleFilter(type) {
+		setFilter(type)
 	}
 
 	function addNewItem(newItem) {
@@ -123,19 +119,21 @@ function ToDoApp({ handleDarkTheme }) {
 			container
 			className={classes.toDoApp}
 			direction="column"
-			spacing={5}
+			spacing={3}
 		>
-			<Grid item>
-				<ToDoHeader
-					title="TO DO"
-					handleDarkTheme={handleDarkTheme}
-					themeIcon={
-						theme.palette.type === 'light'
-							? lightThemeIcon
-							: darkThemeIcon
-					}
-				/>
-			</Grid>
+			{/* <Grid item> */}
+			{/* <Box> */}
+			<ToDoHeader
+				title="TO DO"
+				handleDarkTheme={handleDarkTheme}
+				themeIcon={
+					theme.palette.type === 'light'
+						? lightThemeIcon
+						: darkThemeIcon
+				}
+			/>
+			{/* </Box> */}
+			{/* </Grid> */}
 
 			<Grid item>
 				<ToDoCurrentItem
@@ -155,6 +153,8 @@ function ToDoApp({ handleDarkTheme }) {
 					items={filteredItemsList}
 					updateItem={updateItem}
 					deleteItem={deleteItem}
+					filter={filter}
+					handleFilter={handleFilter}
 					filterList={filterList}
 					clearList={clearList}
 				/>

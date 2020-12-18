@@ -29,6 +29,8 @@ const useStyles = makeStyles(() => ({
 function ToDoItemsList({
 	deleteItem,
 	updateItem,
+	filter,
+	handleFilter,
 	filterList,
 	clearList,
 	items,
@@ -76,6 +78,8 @@ function ToDoItemsList({
 					))}
 					<ToDoFooter
 						itemsCount={items.length}
+						filter={filter}
+						handleFilter={handleFilter}
 						filterList={filterList}
 						clearList={clearList}
 					/>
@@ -93,6 +97,8 @@ ToDoItemsList.propTypes = {
 	items: Proptypes.instanceOf(Array).isRequired,
 	deleteItem: Proptypes.func.isRequired,
 	updateItem: Proptypes.func.isRequired,
+	filter: Proptypes.string.isRequired,
+	handleFilter: Proptypes.func.isRequired,
 	filterList: Proptypes.func.isRequired,
 	clearList: Proptypes.func.isRequired,
 	classes: Proptypes.string,
