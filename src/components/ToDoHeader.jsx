@@ -15,7 +15,7 @@ function ToDoHeader({ title, themeIcon, handleDarkTheme }) {
 
 	return (
 		<Grid container justify="center" className="ToDoApp-header">
-			<Grid item md={5}>
+			<Grid item xs={10} md={5}>
 				<Box
 					display="flex"
 					justifyContent="space-between"

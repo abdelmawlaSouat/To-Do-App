@@ -7,7 +7,7 @@
  * Copyright (c) 2020 Shuriken
  */
 
-import { Box, Button, Card, Grid, Grow } from '@material-ui/core'
+import { Box, Button, Card, Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import ClearIcon from '@material-ui/icons/Clear'
 import Proptypes from 'prop-types'
@@ -39,51 +39,35 @@ function ToDoItemsList({
 	const clxs = useStyles()
 
 	return (
-		<Grid container className="ToDoApp-items-list" justify="center">
-			<Grid item md={5}>
+		<Grid className="ToDoApp-items-list" container justify="center">
+			<Grid item xs={10} md={5}>
 				<Card className={classes}>
 					{items.map((item) => (
-						<Grow key={item.idx} in={item.id !== -1}>
-							<Box
-								display="flex"
-								className={clxs.itemBox}
-								alignItems="center"
-								justifyContent="space-between"
-								my={2}
-								pr={3}
-								onMouseEnter={() => {
-									const { idx, value, checked } = item
-									updateItem({ idx, value, checked, showCross: true })
-								}}
-								onMouseLeave={() => {
-									const { idx, value, checked } = item
-									updateItem({
-										idx,
-										value,
-										checked,
-										showCross: false,
-									})
-								}}
+						<Box
+							display="flex"
+							className={clxs.itemBox}
+							alignItems="center"
+							justifyContent="space-between"
+							key={item.idx}
+							my={2}
+							pr={1}
+						>
+							<ToDoItem
+								currentItem={item.value}
+								isChecked={item.checked}
+								idx={item.idx}
+								updateItem={updateItem}
+							/>
+							<Button
+								className={clxs.button}
+								onClick={() => deleteItem(item.idx)}
 							>
-								<ToDoItem
-									currentItem={item.value}
-									isChecked={item.checked}
-									idx={item.idx}
-									updateItem={updateItem}
-								/>
-								{item.showCross && (
-									<Button
-										className={clxs.button}
-										onClick={() => deleteItem(item.idx)}
-									>
-										<ClearIcon />
-									</Button>
-								)}
-							</Box>
-						</Grow>
+								<ClearIcon />
+							</Button>
+						</Box>
 					))}
 					<ToDoFooter
-						itemsCount={items.length}
+						itemsCount={items.filter((item) => !item.checked).length}
 						filter={filter}
 						handleFilter={handleFilter}
 						filterList={filterList}

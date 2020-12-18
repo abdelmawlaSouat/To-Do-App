@@ -7,7 +7,7 @@
  * Copyright (c) 2020 Shuriken
  */
 
-import { Card, Grid } from '@material-ui/core'
+import { Box, Card, Grid } from '@material-ui/core'
 import Proptypes from 'prop-types'
 import ToDoItem from './ToDoItem'
 
@@ -22,17 +22,19 @@ function ToDoCurrentItem({
 }) {
 	return (
 		<Grid className="ToDoApp-current-item" container justify="center">
-			<Grid item md={5}>
-				<Card className={classes}>
-					<ToDoItem
-						currentItem={currentItem}
-						handleCurrentItem={handleCurrentItem}
-						isChecked={allItemsAreChecked}
-						handleCheckAllItems={handleCheckAllItems}
-						addNewItem={addNewItem}
-						placeholder={placeholder}
-					/>
-				</Card>
+			<Grid item xs={10} md={5}>
+				<Box mb={5}>
+					<Card className={classes}>
+						<ToDoItem
+							currentItem={currentItem}
+							handleCurrentItem={handleCurrentItem}
+							isChecked={allItemsAreChecked}
+							handleCheckAllItems={handleCheckAllItems}
+							addNewItem={addNewItem}
+							placeholder={placeholder}
+						/>
+					</Card>
+				</Box>
 			</Grid>
 		</Grid>
 	)

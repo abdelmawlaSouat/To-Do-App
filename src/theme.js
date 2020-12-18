@@ -26,15 +26,10 @@ const theme = (themeType) => ({
 			main: 'hsl(234, 11%, 52%)',
 			dark: 'hsl(234, 39%, 85%)',
 		},
-		// secondary: {
-		// 	light: ,
-		// 	main: ,
-		// 	dark: ,
-		// },
 	},
 	typography: {
 		fontFamily: 'JosefinSans Arial sans-serif',
-		fontSize: 18,
+		fontSize: 15,
 		h4: {
 			fontFamily: 'sans-serif Arial Roboto',
 			fontWeight: 600,

@@ -8,27 +8,64 @@
  */
 
 import { Box, Link, Typography } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 import Proptypes from 'prop-types'
 
+const useStyles = makeStyles((theme) => ({
+	sources: {
+		display: 'flex',
+		[theme.breakpoints.only('xs')]: {
+			flexDirection: 'column',
+		},
+	},
+	hiddenOnMobile: {
+		[theme.breakpoints.only('xs')]: {
+			display: 'none',
+		},
+	},
+	ml1: {
+		marginLeft: '5px',
+	},
+}))
+
 function Sources({ author, authorProfileLink, challengeLink }) {
+	const classes = useStyles()
+
 	return (
-		<Box className="Sources" display="flex" alignItems="center">
-			<Typography variant="caption">{`Challenge by `}</Typography>
-			<Box ml={1}>
-				<Link href={challengeLink} target="_blank" rel="noreferrer">
-					Frontend Mentor
+		<Box
+			className={classes.sources}
+			display="flex"
+			alignItems="center"
+			justifyContent="center"
+			width="100%"
+		>
+			<Box
+				display="flex"
+				alignItems="center"
+				mr={1}
+				className={classes.hiddenOnMobile}
+			>
+				<Typography variant="body2">{`Challenge by `}</Typography>
+				<Link
+					className={classes.ml1}
+					href={challengeLink}
+					target="_blank"
+					rel="noreferrer"
+				>
+					{`Frontend Mentor. `}
 				</Link>
 			</Box>
-			<Typography variant="caption">{`. Coded by `}</Typography>
-			<Box ml={1}>
+
+			<Box display="flex" alignItems="center">
+				<Typography variant="body2">{`Coded by `}</Typography>
 				<Link
+					className={classes.ml1}
 					href={authorProfileLink}
 					target="_blank"
 					rel="noreferrer"
 				>
-					{author}
+					{`${author}.`}
 				</Link>
-				.
 			</Box>
 		</Box>
 	)

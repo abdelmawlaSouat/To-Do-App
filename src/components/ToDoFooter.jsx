@@ -13,6 +13,12 @@ import clsx from 'clsx'
 import Proptypes from 'prop-types'
 
 const useStyles = makeStyles((theme) => ({
+	footerBox: {
+		justifyContent: 'space-between',
+		[theme.breakpoints.only('xs')]: {
+			justifyContent: 'center',
+		},
+	},
 	button: {
 		textTransform: 'none',
 		fontSize: theme.typography.caption.fontSize,
@@ -22,6 +28,11 @@ const useStyles = makeStyles((theme) => ({
 					? 'hsl(235, 19%, 35%)'
 					: 'hsl(236, 33%, 92%)',
 			backgroundColor: 'transparent',
+		},
+	},
+	hiddenOnmobile: {
+		[theme.breakpoints.only('xs')]: {
+			display: 'none',
 		},
 	},
 	footerText: {
@@ -53,13 +64,13 @@ function ToDoFooter({
 		<Box
 			display="flex"
 			alignItems="center"
-			justifyContent="space-between"
+			className={classes.footerBox}
 			px={3}
 			py={2}
 		>
 			<Typography
 				variant="caption"
-				className={clsx(classes.footerText)}
+				className={clsx(classes.footerText, classes.hiddenOnmobile)}
 			>
 				{`${itemsCount} `}
 				items left
@@ -102,7 +113,11 @@ function ToDoFooter({
 			</Box>
 
 			<Button
-				className={clsx(classes.button, classes.footerText)}
+				className={clsx(
+					classes.button,
+					classes.footerText,
+					classes.hiddenOnmobile
+				)}
 				onClick={clearList}
 			>
 				Clear Completed

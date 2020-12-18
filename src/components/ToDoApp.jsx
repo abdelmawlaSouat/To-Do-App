@@ -22,8 +22,11 @@ import lightThemeIcon from '../images/icon-moon.svg'
 const useStyles = makeStyles((theme) => ({
 	toDoApp: {
 		position: 'relative',
-		top: '-25vh',
-		minHeight: '70vh',
+		top: '-38vh',
+		minHeight: '45vh',
+		[theme.breakpoints.only('xs')]: {
+			top: '-46vh',
+		},
 	},
 	item: {
 		backgroundColor:
@@ -45,14 +48,6 @@ function ToDoApp({ handleDarkTheme }) {
 	const theme = useTheme()
 	const classes = useStyles()
 
-	function handleCurrentItem(currentItem) {
-		setCurrentItem(currentItem)
-	}
-
-	function handleFilter(type) {
-		setFilter(type)
-	}
-
 	function addNewItem(newItem) {
 		const newItemsList = [
 			...itemsList,
@@ -60,7 +55,6 @@ function ToDoApp({ handleDarkTheme }) {
 				idx: Date.now(),
 				value: newItem,
 				checked: false,
-				showCross: false,
 			},
 		]
 		setItemsList(newItemsList)
@@ -115,14 +109,7 @@ function ToDoApp({ handleDarkTheme }) {
 	}
 
 	return (
-		<Grid
-			container
-			className={classes.toDoApp}
-			direction="column"
-			spacing={3}
-		>
-			{/* <Grid item> */}
-			{/* <Box> */}
+		<Grid container className={classes.toDoApp} direction="column">
 			<ToDoHeader
 				title="TO DO"
 				handleDarkTheme={handleDarkTheme}
@@ -132,14 +119,14 @@ function ToDoApp({ handleDarkTheme }) {
 						: darkThemeIcon
 				}
 			/>
-			{/* </Box> */}
-			{/* </Grid> */}
 
 			<Grid item>
 				<ToDoCurrentItem
 					classes={classes.item}
 					currentItem={currentItem}
-					handleCurrentItem={handleCurrentItem}
+					handleCurrentItem={(currentItem) =>
+						setCurrentItem(currentItem)
+					}
 					allItemsAreChecked={allItemsAreChecked}
 					handleCheckAllItems={handleCheckAllItems}
 					addNewItem={addNewItem}
@@ -154,7 +141,7 @@ function ToDoApp({ handleDarkTheme }) {
 					updateItem={updateItem}
 					deleteItem={deleteItem}
 					filter={filter}
-					handleFilter={handleFilter}
+					handleFilter={(type) => setFilter(type)}
 					filterList={filterList}
 					clearList={clearList}
 				/>

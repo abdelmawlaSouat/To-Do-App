@@ -20,7 +20,6 @@ function ToDoItem({
 	addNewItem,
 	updateItem,
 	idx,
-	// classes,
 	placeholder,
 }) {
 	const useStyles = makeStyles(() => ({
@@ -30,9 +29,6 @@ function ToDoItem({
 				!handleCheckAllItems && isChecked ? 'line-through' : 'none',
 			color:
 				!handleCheckAllItems && isChecked ? 'hsl(236, 9%, 61%)' : '',
-		},
-		itemBox: {
-			borderBottom: '1px solid red',
 		},
 	}))
 
@@ -63,13 +59,11 @@ function ToDoItem({
 
 	return (
 		<Box
-			// className={classes.itemBox}
 			display="flex"
 			alignItems="center"
-			px={1}
-			py={2}
+			pl={1}
+			py={1}
 			width="100%"
-			// borderBottom={1}
 		>
 			<GradientCheckbox
 				updateItem={updateItem}
@@ -109,7 +103,6 @@ ToDoItem.propTypes = {
 	updateItem: Proptypes.func,
 	handleCurrentItem: Proptypes.func,
 	handleCheckAllItems: Proptypes.func,
-	// classes: Proptypes.string.isRequired,
 }
 
 export default ToDoItem

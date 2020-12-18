@@ -12,7 +12,7 @@ import Sources from './Sources'
 
 function Footer() {
 	return (
-		<Box display="flex" justifyContent="center">
+		<Box display="flex" justifyContent="center" mb={3}>
 			<Sources
 				author="Abdelmawla Souat"
 				authorProfileLink="https://www.linkedin.com/in/abdelmawla-souat/"
