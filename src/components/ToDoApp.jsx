@@ -39,7 +39,12 @@ const useStyles = makeStyles((theme) => ({
 function ToDoApp({ handleDarkTheme }) {
 	const [currentItem, setCurrentItem] = useState('')
 	const [allItemsAreChecked, setallItemsAreChecked] = useState(false)
-	const [itemsList, setItemsList] = useState([])
+	const [itemsList, setItemsList] = useState([
+		{ idx: 1, value: 'Jog around the park 3x', checked: false },
+		{ idx: 2, value: '10 minutes meditation', checked: false },
+		{ idx: 3, value: 'Read for 1 hour', checked: false },
+		{ idx: 4, value: 'Pick up groceries', checked: false },
+	])
 	const [filter, setFilter] = useState('all')
 	const [filteredItemsList, setfilteredItemsList] = useState(
 		itemsList
