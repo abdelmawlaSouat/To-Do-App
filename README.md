@@ -24,7 +24,6 @@ Todo app frontend challenge from [Frontend Mentor](https://www.frontendmentor.io
 - Filter by all/active/complete todos
 - Clear all completed todos
 - Toggle light and dark mode
-- Drag and drop to reorder items on the list
 
 ## Technology Used
 
@@ -43,11 +42,11 @@ Todo app frontend challenge from [Frontend Mentor](https://www.frontendmentor.io
 2. Install Dependencies
 
    ```
-   npm i
+   cd To-Do-App && npm i
    ```
 
 3. Run the dev server
 
    ```
-   npm run serve
+   npm run start
    ```
